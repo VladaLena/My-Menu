@@ -1,0 +1,163 @@
+@use "sass:math";
+
+// Подключение миксинов ===========================================================================================================================================================================================================================================================================
+@import "base/mixins";
+
+// Подключение шрифтов ===========================================================================================================================================================================================================================================================================
+//&display=swap - добавить при подключении через плагин
+// Подключить если есть локальные файлы шрифтов
+//@import "fonts/fonts";
+
+// Подключение иконочных шрифтов ==============================================================================================================================================================================================================================================================================
+// Подключить если есть файл иконочного шрифта
+//@import "fonts/icons";
+
+// Шрифт по умолчанию ==============================================================================================================================================================================================================================================================================
+$fontFamily: "";
+$fontSize: rem(14); // где 14(px) - размер шрифта по умолчанию из макета
+
+// Основные цвета
+$mainColor: #000; // Цвет шрифта по умолчанию
+
+// Обнуление и общие параметры ============================================================================================================================================================================================== =============================================================================================== ===============================================================================================
+@import "base/null";
+
+body {
+  min-height: 100vh;
+}
+
+.menu {
+  margin: 70px 0;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 22px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.title h2 {
+  letter-spacing: 0.75px;
+  text-transform: capitalize;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+.underline {
+  width: 70px;
+  height: 2.5px;
+  background-color: #c59d5f;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.filter-btn {
+    text-transform: capitalize;
+    background: transparent;
+    border: 1px solid #c59d5f;
+    color: #c59d5f;
+    padding: 6px 8px;
+    letter-spacing: 0.75px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3 linear;
+}
+
+.filter-btn:hover {
+    background: #c59d5f;
+    color: #fff;
+}
+
+
+.gallary-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 15px;
+}
+.grid {
+  // .grid__item
+
+  &__item {
+    @media (min-width: 720px){
+        width: 33.3%;
+
+    }
+    padding: 0 15px;
+    margin: 15px 0;
+  }
+}
+.item-grid {
+  // .item-grid__inner
+
+  &__inner {
+    // width: 33.3%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    &::before {
+      content: "";
+      z-index: 2;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+    &:hover {
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+
+  // .item-grid__img
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+  }
+
+  // .item-grid__title
+
+  &__title {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: rem(24);
+    color: #fff;
+    overflow: hidden;
+    z-index: 3;
+    span {
+      display: block;
+      transform: translateY(30px);
+      transition: transform 0.3s ease;
+    }
+  }
+}
+.item-grid__inner:hover .item-grid__title > span {
+  transform: translate(0);
+}
+.item-grid__inner:hover .item-grid__img {
+  transform: scale(1.05);
+}
+// Подключение стилей отдельных блоков
+@import "header";
+@import "footer";
